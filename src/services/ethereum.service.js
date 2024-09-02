@@ -2,7 +2,7 @@ const axios = require("axios");
 const cron=require('node-cron');
 const EthereumPrice = require("../model/ethereumPrice.model");
 
-const fetchData = async () => {
+const fetchEtherPrice = async () => {
   const url =
     "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=inr";
   const response = await axios.get(url);
@@ -16,7 +16,7 @@ const fetchData = async () => {
 
 const fetchAndStoreEthereumPrice = async() => {
   try {
-    const price=await fetchData();
+    const price=await fetchEtherPrice();
     const newPrice=await EthereumPrice.create({price: price});
     await newPrice.save();
   } catch (error) {
@@ -26,6 +26,4 @@ const fetchAndStoreEthereumPrice = async() => {
 
 cron.schedule("*/10 * * * *", fetchAndStoreEthereumPrice);
 
-// fetchAndStoreEthereumPrice();
-
-module.exports = fetchData;
+module.exports = fetchEtherPrice;

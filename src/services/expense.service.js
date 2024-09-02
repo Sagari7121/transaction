@@ -11,7 +11,7 @@ const calculateExpense = async (address) => {
     const expense = (parseInt(tx.gasUsed) * parseInt(tx.gasPrice)) / 1e18;
     return total + expense;
   }, 0);
-  console.log(totalExpense);
+
   return totalExpense;
 };
 

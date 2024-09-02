@@ -8,7 +8,7 @@ const transactionSchema = new mongoose.Schema({
   blockHash: { type: String, required: true },
   transactionIndex: { type: String, required: true },
   from: { type: String, required: true },
-  to: { type: String, required: true },
+  to: { type: String, default: ""},
   value: { type: String, required: true },
   gas: { type: String, required: true },
   gasPrice: { type: String, required: true },

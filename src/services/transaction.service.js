@@ -3,10 +3,11 @@ const UserTransaction = require("../model/userTransaction.model");
 
 const fetchTransaction = async (address) => {
   let transactions = await fetchDataFromEther(address);
+  console.log(transactions)
   let userTransactions = await UserTransaction.findOne({ address });
 
   if (!userTransactions) {
-    userTransactions = await UserTransaction.create({ address, transactions });
+    userTransactions = new UserTransaction({ address, transactions: [...transactions] });
   } else {
     let filteredTransaction = userTransactions.transactions.filter(
       (transaction) =>
@@ -15,8 +16,8 @@ const fetchTransaction = async (address) => {
         )
     );
     userTransactions.transactions.push(...filteredTransaction);
-    await userTransactions.save();
   }
+  await userTransactions.save();
   return userTransactions;
 };
 const fetchDataFromEther = async (address) => {

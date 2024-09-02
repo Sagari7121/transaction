@@ -28,6 +28,7 @@ const fetchDataFromEther = async (address) => {
   if (response.data.status !== "1") {
     res.status(404).send();
   }
+  return response.data.result;
 };
 
 module.exports = fetchTransaction;

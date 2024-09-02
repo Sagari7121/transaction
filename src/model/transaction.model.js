@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 
 const transactionSchema = new mongoose.Schema({
-  blockNumber: { type: String, required: true },
-  timeStamp: { type: String, required: true },
-  hash: { type: String, required: true, unique: true },
-  nonce: { type: String, required: true },
-  blockHash: { type: String, required: true },
-  transactionIndex: { type: String, required: true },
-  from: { type: String, required: true },
+  blockNumber: { type: String,  },
+  timeStamp: { type: String },
+  hash: { type: String, unique: true },
+  nonce: { type: String },
+  blockHash: { type: String },
+  transactionIndex: { type: String},
+  from: { type: String },
   to: { type: String, default: "" },
   value: { type: String, default: "" },
   gas: { type: String, default: "" },

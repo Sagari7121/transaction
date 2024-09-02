@@ -1,19 +1,19 @@
 const UserTransaction = require("../model/userTransaction.model");
 
 const fetchTransaction = async (address, transactions) => {
-  let user = await UserTransaction.findOne({ address });
+  let userTransactions = await UserTransaction.findOne({ address });
 
-  if (!user) {
-    user = await UserTransaction.create({ address, transactions });
+  if (!userTransactions) {
+    userTransactions = await UserTransaction.create({ address, transactions });
   } else {
-    let updatedTransaction = user.transactions.filter(
+    let filteredTransaction = userTransactions.transactions.filter(
       (transaction) =>
-        !user.transactions.some((item) => item.hash === transaction.hash)
+        !userTransactions.transactions.some((item) => item.hash === transaction.hash)
     );
-    user.transactions.push(...updatedTransaction);
-    await user.save();
+    userTransactions.transactions.push(...filteredTransaction);
+    await userTransactions.save();
   }
-  return user;
+  return userTransactions;
 };
 
 module.exports=fetchTransaction;

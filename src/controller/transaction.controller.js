@@ -14,8 +14,8 @@ const transactionController =async (req, res, next) => {
       res.status(404).send('Error fetching data from Etherscan');
     }
 
-    const user=await fetchTransaction(address, response.data.result);
-    res.status(201).send(user);
+    const userTransactions=await fetchTransaction(address, response.data.result);
+    res.status(201).send(userTransactions);
   } catch (err) {
     console.log(err.message);
   }

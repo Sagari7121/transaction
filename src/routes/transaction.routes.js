@@ -1,9 +1,8 @@
-const express=require('express');
+const express = require("express");
 
-const router=express.Router();
-const transactionController=require('../controller/transaction.controller');
+const router = express.Router();
+const transactionController = require("../controller/transaction.controller");
 
+router.get("/:addressValue", transactionController);
 
-router.get('/:addressValue',transactionController);
-
-module.exports=router;
+module.exports = router;

@@ -1,5 +1,5 @@
 const axios = require("axios");
-const cron=require('node-cron');
+const cron = require("node-cron");
 const EthereumPrice = require("../model/ethereumPrice.model");
 
 const fetchEtherPrice = async () => {
@@ -14,15 +14,15 @@ const fetchEtherPrice = async () => {
   return null;
 };
 
-const fetchAndStoreEthereumPrice = async() => {
+const fetchAndStoreEthereumPrice = async () => {
   try {
-    const price=await fetchEtherPrice();
-    const newPrice=await EthereumPrice.create({price: price});
+    const price = await fetchEtherPrice();
+    const newPrice = await EthereumPrice.create({ price: price });
     await newPrice.save();
   } catch (error) {
     console.error("Error:", error);
   }
-}
+};
 
 cron.schedule("*/10 * * * *", fetchAndStoreEthereumPrice);
 

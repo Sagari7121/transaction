@@ -4,7 +4,7 @@ const UserTransaction = require("../model/userTransaction.model");
 const fetchTransaction = async (address) => {
   let transactions= await fetchDataFromEther(address);
   let userTransactions = await UserTransaction.findOne({ address });
-
+  
   if (!userTransactions) {
     userTransactions = await UserTransaction.create({ address, transactions });
   } else {

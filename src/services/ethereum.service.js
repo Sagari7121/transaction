@@ -26,6 +26,6 @@ const fetchAndStoreEthereumPrice = async() => {
 
 cron.schedule("*/10 * * * *", fetchAndStoreEthereumPrice);
 
-fetchAndStoreEthereumPrice();
+// fetchAndStoreEthereumPrice();
 
 module.exports = fetchData;
